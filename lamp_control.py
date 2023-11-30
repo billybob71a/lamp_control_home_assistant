@@ -5,6 +5,7 @@ GPIO.setmode(GPIO.BOARD)
 GPIO.setup(10,GPIO.IN) # set pin 10 to be an input pin and set initial value to be pulled low (off)
 
 while True:
-    if GPIO.input(10) == GPIO.HIGH:
-        print("Button was pushed")
+    input_value = GPIO.input(10)
+    if input_value == False:
+        print("Who pressed my Button")
 
