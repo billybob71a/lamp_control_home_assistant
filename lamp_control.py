@@ -1,4 +1,4 @@
-import RPIO.GPIO as GPIO
+import RPI.GPIO as GPIO
 
 GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
