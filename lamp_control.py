@@ -6,8 +6,8 @@ GPIO.setup(10,GPIO.IN) # set pin 10 to be an input pin and set initial value to 
 
 while True:
     input_value = GPIO.input(10)
-    if input_value == True:
+    if input_value == False:
         print("Who pressed my Button")
-        while input_value == True:
+        while input_value == False:
             input_value = GPIO.input(10)
 
