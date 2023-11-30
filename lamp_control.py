@@ -8,4 +8,6 @@ while True:
     input_value = GPIO.input(10)
     if input_value == True:
         print("Who pressed my Button")
+        while input_value == True:
+            input_value = GPIO.input(10)
 
