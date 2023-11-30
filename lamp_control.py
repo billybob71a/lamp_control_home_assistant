@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-GPIO.setWarnings(False)
+# GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(10,GPIO.IN, pull_up_down-GPIO.PUD_DOWN) # set pin 10 to be an input pin and set initial value to be pulled low (off)
 
