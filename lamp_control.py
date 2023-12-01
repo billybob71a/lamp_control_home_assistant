@@ -1,7 +1,10 @@
 from time import sleep
 import json
+import logging
 import requests
 import RPi.GPIO as GPIO
+
+logging.basicConfig(filename='lamp_control.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s') 
 
 # GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
@@ -24,12 +27,12 @@ try:
         if line:
             token_secret = line.strip() #Stripping line of newline characters)
         else:
-            print("File is empty or no lines to read.")
-            
+            logging.info("File is empty or no lines to read.")
+          
 except FileNotFoundError:
-    print(f"File '{file_path}' not found.")
+    logging.info(f"File '{file_path}' not found.")
 except Exception as e:
-    print("An error occurred:", e)
+    logging.info("An error occurred:", e)
 # reading secret token ends here
 token = token_secret
 headers = {
@@ -49,39 +52,25 @@ def call_api(onoff):
     try:
         response = requests.post(url, headers=headers, data=json.dumps(data))
         if response.status_code == 200:
-            print('POST request successful')
-            print("Response:", response.json())
+            logging.info('POST request successful')
+            logging.info("Response:", response.json())
         else:
-            print(f'Failed with status code : {response.status_code}')
+            logging.info(f'Failed with status code : {response.status_code}')
     except requests.exceptions.RequestException as e:
-            print('Request failed', e)
+            logging.info('Request failed', e)
 while True:
     if GPIO.event_detected(button1):
-        print("button 1 pressed")
+        logging.info("button 1 pressed")
         increment+=1
-        print("The value is " + str(increment))
+        logging.info("The value is " + str(increment))
         call_api('on')
                 
     elif GPIO.event_detected(button2):
-        print("button 2 was pressed")
+        logging.info("button 2 was pressed")
         increment+=1
-        print("The value is " + str(increment))
+        logging.info("The value is " + str(increment))
         call_api('off')
-#    if GPIO.input(10) == GPIO.HIGH:
-#        print("Button 1 was pushed")
-#        increment+=1
-#        print("The value is " + str(increment))
 
-#GPIO.setup(button2, GPIO.IN,pull_up_down=GPIO.PUD_UP) 
-#while True:
-#    if GPIO.input(button1) == False:
-#        print("Button 1 was pressed")
-#        sleep(1)
-#    if GPIO.input(button2) == False:
-#        print("Button 2 was pressed")
-#        sleep(1)
-#    increment+=1
-    #print("The value is " + str(increment))
     
 
 
