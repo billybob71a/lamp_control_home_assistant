@@ -4,13 +4,11 @@ import RPi.GPIO as GPIO
 # GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
 button1 = 10
-
-def button_callback(channel):
-    print("Callback function called Button 1 was pushed!")
-
 button2 = 12
+
 increment = 0
-GPIO.setup(button1,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # set pin 16 to be an input pin and set initial value to be pulled low (off)
+GPIO.setup(button1,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(button2,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # set pin 16 to be an input pin and set initial value to be pulled low (off)
 GPIO.add_event_detect(button1, GPIO.RISING)
 GPIO.add_event_detect(button2, GPIO.RISING)
 while True:
