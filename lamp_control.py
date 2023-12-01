@@ -16,7 +16,7 @@ while True:
         print("Button 2 was pressed")
         sleep(.1)
     increment+=1
-    print("The value is " + increment)
+    print("The value is " + str(increment))
     
 
 
