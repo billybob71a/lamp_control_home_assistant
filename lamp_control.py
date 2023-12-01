@@ -11,12 +11,12 @@ GPIO.setup(button2, GPIO.IN,pull_up_down=GPIO.PUD_UP)
 while True:
     if GPIO.input(button1) == False:
         print("Button 1 was pressed")
-        sleep(.1)
+        sleep(1)
     if GPIO.input(button2) == False:
         print("Button 2 was pressed")
-        sleep(.1)
+        sleep(1)
     increment+=1
-    print("The value is " + str(increment))
+    #print("The value is " + str(increment))
     
 
 
