@@ -19,14 +19,14 @@ file_path = 'secret.txt'  # Replace with the path to your file
 
 try:
     with open(file_path, 'r') as file:
-        line = file.readline()  # Read one line from the file
+        token_secret = file.readline()  # Read one line from the file
         
-        if line:
-            print("One line from the file:")
-            print(line.strip())  # Print the line (stripping newline characters)
-            token_secret = line.strip()
-        else:
-            print("File is empty or no lines to read.")
+#        if line:
+#            print("One line from the file:")
+#            print(line.strip())  # Print the line (stripping newline characters)
+#            token_secret = line.strip()
+#        else:
+#            print("File is empty or no lines to read.")
             
 except FileNotFoundError:
     print(f"File '{file_path}' not found.")
