@@ -15,32 +15,40 @@ GPIO.add_event_detect(button1, GPIO.RISING)
 GPIO.add_event_detect(button2, GPIO.RISING)
 url = "http://192.168.1.96:8123/api/services/google_assistant_sdk/send_text_command"
 token = ''
-data = {
-    'command': 'turn on lamp'
-}
 headers = {
     'Authorization': f'Bearer {token}',
     'Content-Type': 'application/json'
 }
+def call_api(onoff):
+    if onoff == 'on':
+        data = {
+            'command': 'turn on lamp'
+        }
+    elif onoff == 'off':
+        data = {
+            'command': 'turn off lamp'
+        }
+    try:
+        response = requests.post(url, headers=headers, data=json.dumps(data))
+        if response.status_code == 200:
+            print('POST request successful')
+            print("Response:", response.json())
+        else:
+            print(f'Failed with status code : {response.status_code}')
+    except requests.exceptions.RequestException as e:
+            print('Request failed', e)
 while True:
     if GPIO.event_detected(button1):
         print("button 1 pressed")
         increment+=1
         print("The value is " + str(increment))
-        try:
-            response = requests.post(url, headers=headers, data=json.dumps(data))
-            if response.status_code == 200:
-                print('POST request successful')
-                print("Response:", response.json())
-            else:
-                print(f'Failed with status code : {response.status_code}')
-        except requests.exceptions.RequestException as e:
-            print('Request failed', e)
+        call_api('on')
                 
     elif GPIO.event_detected(button2):
         print("button 2 was pressed")
         increment+=1
         print("The value is " + str(increment))
+        call_api('off')
 #    if GPIO.input(10) == GPIO.HIGH:
 #        print("Button 1 was pushed")
 #        increment+=1
