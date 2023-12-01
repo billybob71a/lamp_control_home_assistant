@@ -14,6 +14,9 @@ GPIO.setup(button1,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # set pin 16 to be an inp
 while True:
     if GPIO.input(10) == GPIO.HIGH:
         print("Button 1 was pushed")
+        increment+=1
+        print("The value is " + str(increment))
+
 #GPIO.setup(button2, GPIO.IN,pull_up_down=GPIO.PUD_UP) 
 #while True:
 #    if GPIO.input(button1) == False:
