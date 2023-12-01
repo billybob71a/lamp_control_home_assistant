@@ -1,13 +1,18 @@
+from time import sleep
 import RPi.GPIO as GPIO
 
 # GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(10,GPIO.IN) # set pin 10 to be an input pin and set initial value to be pulled low (off)
-
+button1=16
+button2=12
+GPIO.setup(button1,GPIO.IN,pull_up_down=GPIO.PUD_UP) # set pin 16 to be an input pin and set initial value to be pulled low (off)
+GPIO.setup(button2, GPIO.IN,pull_up_down=GPIO.PUD_UP) 
 while True:
-    input_value = GPIO.input(10)
-    if input_value == False:
-        print("Who pressed my Button")
-        while input_value == False:
-            input_value = GPIO.input(10)
+    if GPIO.input(button1) == False:
+        print("Button 1 was pressed")
+        sleep(.1)
+    if GPIO.input(button2) == False:
+        print("Button 2 was pressed")
+
+
 
