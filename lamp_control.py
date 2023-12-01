@@ -28,7 +28,7 @@ while True:
         increment+=1
         print("The value is " + str(increment))
         try:
-            response = requests.posts(url, headers=headers, data=json.dumps(data))
+            response = requests.post(url, headers=headers, data=json.dumps(data))
             if response.status_code == 200:
                 print('POST request successful')
                 print("Response:", response.json())
