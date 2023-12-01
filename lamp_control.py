@@ -14,11 +14,31 @@ GPIO.setup(button2,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # set pin 16 to be an inp
 GPIO.add_event_detect(button1, GPIO.RISING)
 GPIO.add_event_detect(button2, GPIO.RISING)
 url = "http://192.168.1.96:8123/api/services/google_assistant_sdk/send_text_command"
-token = ''
+# the next lines are to read a the secret token from a file
+file_path = 'secret.txt'  # Replace with the path to your file
+
+try:
+    with open(file_path, 'r') as file:
+        line = file.readline()  # Read one line from the file
+        
+        if line:
+            print("One line from the file:")
+            print(line.strip())  # Print the line (stripping newline characters)
+            token_secret = line.strip()
+        else:
+            print("File is empty or no lines to read.")
+            
+except FileNotFoundError:
+    print(f"File '{file_path}' not found.")
+except Exception as e:
+    print("An error occurred:", e)
+# reading secret token ends here
+token = token_secret
 headers = {
     'Authorization': f'Bearer {token}',
     'Content-Type': 'application/json'
 }
+
 def call_api(onoff):
     if onoff == 'on':
         data = {
