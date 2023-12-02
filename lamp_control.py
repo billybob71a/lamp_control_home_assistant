@@ -63,13 +63,13 @@ while True:
         logging.info("button 1 pressed")
         increment+=1
         logging.info("The value is " + str(increment))
-        call_api('on')
-                
+        call_api('on')            
     elif GPIO.event_detected(button2):
         logging.info("button 2 was pressed")
         increment+=1
         logging.info("The value is " + str(increment))
         call_api('off')
+    sleep(0.01)
 
     
 
