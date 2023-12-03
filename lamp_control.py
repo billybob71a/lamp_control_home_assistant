@@ -71,23 +71,9 @@ try:
             increment+=1
             logging.info("The value is " + str(increment))
             call_api('off')
+        sleep(.1)
 except KeyboardInterrupt as e:
     GPIO.cleanup()
-#    if GPIO.input(10) == GPIO.HIGH:
-#        print("Button 1 was pushed")
-#        increment+=1
-#        print("The value is " + str(increment))
-
-#GPIO.setup(button2, GPIO.IN,pull_up_down=GPIO.PUD_UP) 
-#while True:
-#    if GPIO.input(button1) == False:
-#        print("Button 1 was pressed")
-#        sleep(1)
-#    if GPIO.input(button2) == False:
-#        print("Button 2 was pressed")
-#        sleep(1)
-#    increment+=1
-    #print("The value is " + str(increment))
     
 
 
