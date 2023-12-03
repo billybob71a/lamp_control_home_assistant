@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 # GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
 button1 = 40
-button2 = 4
+button2 = 16
 
 increment = 0
 GPIO.setup(button1,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
