@@ -5,7 +5,7 @@ import RPi.GPIO as GPIO
 
 # GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
-button1 = 10
+button1 = 40
 button2 = 12
 
 increment = 0
@@ -55,18 +55,21 @@ def call_api(onoff):
             print(f'Failed with status code : {response.status_code}')
     except requests.exceptions.RequestException as e:
             print('Request failed', e)
-while True:
-    if GPIO.event_detected(button1):
-        print("button 1 pressed")
-        increment+=1
-        print("The value is " + str(increment))
-        call_api('on')
-                
-    elif GPIO.event_detected(button2):
-        print("button 2 was pressed")
-        increment+=1
-        print("The value is " + str(increment))
-        call_api('off')
+
+try: 
+    while True:
+        if GPIO.event_detected(button1):
+            print("button 1 pressed")
+            increment+=1
+            print("The value is " + str(increment))
+            #call_api('on')                
+        elif GPIO.event_detected(button2):
+            print("button 2 was pressed")
+            increment+=1
+            print("The value is " + str(increment))
+            #call_api('off')
+except KeyboardInterrupt as e:
+    GPIO.cleanup()
 #    if GPIO.input(10) == GPIO.HIGH:
 #        print("Button 1 was pushed")
 #        increment+=1
