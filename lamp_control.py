@@ -62,12 +62,12 @@ def call_api(onoff):
 try: 
     while True:
         if GPIO.event_detected(button1):
-            logging.info("button 1 pressed")
+            logging.info("off button was pressed")
             increment+=1
             logging.info("The value is " + str(increment))
             call_api('on')                
         elif GPIO.event_detected(button2):
-            logging.info("button 2 was pressed")
+            logging.info("on button pressed")
             increment+=1
             logging.info("The value is " + str(increment))
             call_api('off')
