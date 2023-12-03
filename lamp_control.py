@@ -5,8 +5,8 @@ import RPi.GPIO as GPIO
 
 # GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
-button1 = 40
-button2 = 16
+button1 = 16
+button2 = 40
 
 increment = 0
 GPIO.setup(button1,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
@@ -62,12 +62,12 @@ try:
             print("button 1 pressed")
             increment+=1
             print("The value is " + str(increment))
-            #call_api('on')                
+            call_api('on')                
         elif GPIO.event_detected(button2):
             print("button 2 was pressed")
             increment+=1
             print("The value is " + str(increment))
-            #call_api('off')
+            call_api('off')
 except KeyboardInterrupt as e:
     GPIO.cleanup()
 #    if GPIO.input(10) == GPIO.HIGH:
