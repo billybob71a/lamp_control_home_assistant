@@ -4,6 +4,8 @@ import logging
 import requests
 import RPi.GPIO as GPIO
 
+logging.basicConfig(filename='lamp_control.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 # GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
 button1 = 16
