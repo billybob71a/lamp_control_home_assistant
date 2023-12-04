@@ -12,9 +12,6 @@ increment = 0
 
 GPIO.setup(button2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-GPIO.add_event_detect(button2, GPIO.FALLING, callback=call_api, bouncetime=200)
-url = "http://192.168.1.96:8123/api/services/google_assistant_sdk/send_text_command"
-
 file_path = 'secret.txt'  # Replace with the path to your file
 
 try:
@@ -55,6 +52,9 @@ def call_api(onoff):
             print(f'Failed with status code : {response.status_code}')
     except requests.exceptions.RequestException as e:
             print('Request failed', e)
+
+GPIO.add_event_detect(button2, GPIO.FALLING, callback=call_api, bouncetime=200)
+url = "http://192.168.1.96:8123/api/services/google_assistant_sdk/send_text_command"
 
 try: 
     while True:
