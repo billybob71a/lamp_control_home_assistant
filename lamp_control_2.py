@@ -35,6 +35,7 @@ headers = {
 }
 
 def call_api(onoff):
+    data = {}
     if onoff == 'on':
         data = {
             'command': 'turn on lamp'
