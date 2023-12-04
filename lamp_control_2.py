@@ -12,25 +12,6 @@ increment = 0
 
 GPIO.setup(button2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-def call_api(onoff):
-    if onoff == 'on':
-        data = {
-            'command': 'turn on lamp'
-        }
-    elif onoff == 'off':
-        data = {
-            'command': 'turn off lamp'
-        }
-    try:
-        response = requests.post(url, headers=headers, data=json.dumps(data))
-        if response.status_code == 200:
-            print('POST request successful')
-            print("Response:", response.json())
-        else:
-            print(f'Failed with status code : {response.status_code}')
-    except requests.exceptions.RequestException as e:
-            print('Request failed', e)
-
 GPIO.add_event_detect(button2, GPIO.FALLING, callback=call_api, bouncetime=200)
 url = "http://192.168.1.96:8123/api/services/google_assistant_sdk/send_text_command"
 
@@ -55,6 +36,25 @@ headers = {
     'Authorization': f'Bearer {token}',
     'Content-Type': 'application/json'
 }
+
+def call_api(onoff):
+    if onoff == 'on':
+        data = {
+            'command': 'turn on lamp'
+        }
+    elif onoff == 'off':
+        data = {
+            'command': 'turn off lamp'
+        }
+    try:
+        response = requests.post(url, headers=headers, data=json.dumps(data))
+        if response.status_code == 200:
+            print('POST request successful')
+            print("Response:", response.json())
+        else:
+            print(f'Failed with status code : {response.status_code}')
+    except requests.exceptions.RequestException as e:
+            print('Request failed', e)
 
 try: 
     while True:
