@@ -4,17 +4,13 @@ import logging
 import requests
 import RPi.GPIO as GPIO
 
-
-
 GPIO.setmode(GPIO.BOARD)
-
 
 button2 = 40
 
 increment = 0
-GPIO.setup(button2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-GPIO.add_event_detect(button2, GPIO.FALLING)
+GPIO.setup(button2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 url = "http://192.168.1.96:8123/api/services/google_assistant_sdk/send_text_command"
 
@@ -59,6 +55,8 @@ def call_api(onoff):
     except requests.exceptions.RequestException as e:
             print('Request failed', e)
 
+GPIO.add_event_detect(button2, GPIO.FALLING, callback=call_api)
+
 try: 
     while True:
         if GPIO.event_detected(button2):
@@ -69,4 +67,3 @@ try:
         sleep(.1)
 except KeyboardInterrupt as e:
     GPIO.cleanup()
-
