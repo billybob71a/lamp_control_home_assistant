@@ -9,6 +9,8 @@ GPIO.setmode(GPIO.BOARD)
 
 button2 = 40
 
+logging.basicConfig(filename='lamp_control_2.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 increment = 0
 
 GPIO.setup(button2, GPIO.IN, pull_up_down=GPIO.PUD_UP)
@@ -23,12 +25,12 @@ try:
         if line:
             token_secret = line.strip() #Stripping line of newline characters)
         else:
-            print("File is empty or no lines to read.")
+            logging.info("File is empty or no lines to read.")
             
 except FileNotFoundError:
-    print(f"File '{file_path}' not found.")
+    logging.info(f"File '{file_path}' not found.")
 except Exception as e:
-    print("An error occurred:", e)
+    logging.info("An error occurred:", e)
 # reading secret token ends here
 token = token_secret
 headers = {
@@ -38,7 +40,7 @@ headers = {
 ##section ends here
 #this section is a function to call the api
 def call_api(onoff):
-    print(f"You pressed {onoff}")
+    logging.info(f"You pressed {onoff}")
     data = {}
     if onoff == 'on':
         data = {
@@ -49,20 +51,20 @@ def call_api(onoff):
             'command': 'turn off lamp'
         }
     elif onoff == 40:
-        print("you pressed off button which GPIO 40")
+        logging.info("you pressed off button which GPIO 40")
         data = {
             'command': 'turn off lamp'
         }
     try:
         response = requests.post(url, headers=headers, data=json.dumps(data))
         if response.status_code == 200:
-            print('POST request successful')
-            print("Response:", response.json())
+            logging.info('POST request successful')
+            logging.info("Response:", response.json())
         else:
-            print(f'the header info in url is {headers}, the json info is {data}')
-            print(f'Failed with status code : {response.status_code}')
+            logging.info(f'the header info in url is {headers}, the json info is {data}')
+            logging.info(f'Failed with status code : {response.status_code}')
     except requests.exceptions.RequestException as e:
-            print('Request failed', e)
+            logging.info('Request failed', e)
 #this section calls the api
 GPIO.add_event_detect(button2, GPIO.FALLING, callback=lambda button2: call_api(button2), bouncetime=500)
 
@@ -72,11 +74,11 @@ try:
         if GPIO.event_detected(button2) == 1:
             current_datetime = datetime.now()
             date_string = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
-            print("date time is ", date_string)
-            print("off button was pressed")
+            logging.info("date time is ", date_string)
+            logging.info("off button was pressed")
             increment+=1
-            print("The value is " + str(increment))
+            logging.info("The value is " + str(increment))
             #call_api('off')
-            print("I called the api")                
+            logging.info("I called the api")                
 except KeyboardInterrupt as e:
     GPIO.cleanup()
