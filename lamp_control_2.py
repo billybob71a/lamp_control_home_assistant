@@ -37,6 +37,7 @@ headers = {
 ##section ends here
 #this section is a function to call the api
 def call_api(onoff):
+    print(f"You pressed {onoff}")
     data = {}
     if onoff == 'on':
         data = {
