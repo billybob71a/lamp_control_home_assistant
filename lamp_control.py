@@ -53,7 +53,7 @@ def call_api(pin):
         response = requests.post(url, headers=headers, data=json.dumps(data))
         if response.status_code == 200:
             logging.info('POST request successful')
-            logging.info("Response:", str(response.json()))
+            logging.info("Response:")
         else:
             logging.info(f'Failed with status code : {response.status_code}')
     except requests.exceptions.RequestException as e:
@@ -62,7 +62,7 @@ def call_api(pin):
 try: 
     while True:
         if GPIO.event_detected(button1):
-            logging.info("on button was pressed")
+            logging.info("off button was pressed")
             increment+=1
             logging.info("The value is " + str(increment))
             #call_api('on')                
