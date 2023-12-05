@@ -49,6 +49,9 @@ def call_api(onoff):
         }
     elif onoff == '40':
         print("you pressed off button which GPIO 40")
+        data = {
+            'command': 'turn off lamp'
+        }
     try:
         response = requests.post(url, headers=headers, data=json.dumps(data))
         if response.status_code == 200:
