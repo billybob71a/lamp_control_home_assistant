@@ -1,4 +1,5 @@
 from time import sleep
+from datetime import datetime
 import json
 import logging
 import requests
@@ -69,6 +70,8 @@ GPIO.add_event_detect(button2, GPIO.FALLING, callback=lambda button2: call_api(b
 try: 
     while True:
         if GPIO.event_detected(button2) == 1:
+            now = datetime.now()
+            print("date time is ", now.strftime())
             print("off button was pressed")
             increment+=1
             print("The value is " + str(increment))
