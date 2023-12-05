@@ -54,6 +54,7 @@ def call_api(onoff):
             print('POST request successful')
             print("Response:", response.json())
         else:
+            print(f'the header info in url is {headers}, the json info is {data}')
             print(f'Failed with status code : {response.status_code}')
     except requests.exceptions.RequestException as e:
             print('Request failed', e)
