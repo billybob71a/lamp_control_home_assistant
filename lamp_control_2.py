@@ -47,7 +47,7 @@ def call_api(onoff):
         data = {
             'command': 'turn off lamp'
         }
-    elif onoff == '40':
+    elif onoff == 40:
         print("you pressed off button which GPIO 40")
         data = {
             'command': 'turn off lamp'
