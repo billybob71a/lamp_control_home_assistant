@@ -63,7 +63,7 @@ def call_api(onoff):
     except requests.exceptions.RequestException as e:
             print('Request failed', e)
 #this section calls the api
-GPIO.add_event_detect(button2, GPIO.FALLING, callback=lambda button2: call_api(button2), bouncetime=200)
+GPIO.add_event_detect(button2, GPIO.FALLING, callback=lambda button2: call_api(button2), bouncetime=500)
 
 
 try: 
@@ -74,6 +74,6 @@ try:
             print("The value is " + str(increment))
             #call_api('off')
             print("I called the api")                
-        sleep(.1)
+        sleep(1)
 except KeyboardInterrupt as e:
     GPIO.cleanup()
