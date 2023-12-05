@@ -64,7 +64,7 @@ GPIO.add_event_detect(button2, GPIO.FALLING, bouncetime=200)
 
 try: 
     while True:
-        if GPIO.event_detected(button2) == 0:
+        if GPIO.event_detected(button2) == 1:
             print("off button was pressed")
             increment+=1
             print("The value is " + str(increment))
