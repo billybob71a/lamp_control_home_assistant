@@ -53,7 +53,7 @@ def call_api(pin):
         response = requests.post(url, headers=headers, data=json.dumps(data))
         if response.status_code == 200:
             logging.info('POST request successful')
-            logging.info("Response:", response.json())
+            logging.info("Response:", str(response.json()))
         else:
             logging.info(f'Failed with status code : {response.status_code}')
     except requests.exceptions.RequestException as e:
