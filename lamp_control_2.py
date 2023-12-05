@@ -74,6 +74,5 @@ try:
             print("The value is " + str(increment))
             #call_api('off')
             print("I called the api")                
-        sleep(1)
 except KeyboardInterrupt as e:
     GPIO.cleanup()
