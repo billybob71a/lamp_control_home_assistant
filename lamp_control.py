@@ -68,7 +68,7 @@ try:
             logging.info("The value is " + str(increment))
             #call_api('on')                
         elif GPIO.event_detected(button2):
-            logging.info("off button pressed")
+            logging.info("on button pressed")
             increment+=1
             logging.info("The value is " + str(increment))
         sleep(.1)
