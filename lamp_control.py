@@ -13,7 +13,7 @@ button2 = 18
 
 increment = 0
 GPIO.setup(button1,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
-#GPIO.setup(button2,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # set pin 16 to be an input pin and set initial value to be pulled low (off)
+GPIO.setup(button2,GPIO.IN,pull_up_down=GPIO.PUD_DOWN) # set pin 16 to be an input pin and set initial value to be pulled low (off)
 GPIO.add_event_detect(button1, GPIO.RISING, callback = lambda button1: call_api(button1), bouncetime=500)
 GPIO.add_event_detect(button2, GPIO.RISING, callback = lambda button2: call_api(button2), bouncetime=500)
 url = "http://192.168.1.96:8123/api/services/google_assistant_sdk/send_text_command"
