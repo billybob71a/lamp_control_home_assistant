@@ -9,7 +9,7 @@ logging.basicConfig(filename='lamp_control.log', level=logging.INFO, format='%(a
 # GPIO.setWarnings(False)
 GPIO.setmode(GPIO.BOARD)
 button1 = 16
-#button2 = 40
+button2 = 18
 
 increment = 0
 GPIO.setup(button1,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
@@ -45,7 +45,7 @@ def call_api(pin):
         data = {
             'command': 'turn off lamp'
         }
-    elif pin == 'off':
+    elif pin == 18:
         data = {
             'command': 'turn on lamp'
         }
@@ -67,11 +67,10 @@ try:
             increment+=1
             logging.info("The value is " + str(increment))
             #call_api('on')                
-        #elif GPIO.event_detected(button2):
-        #    logging.info("off button pressed")
-        #    increment+=1
-        #    logging.info("The value is " + str(increment))
-            #call_api('off')
+        elif GPIO.event_detected(button2):
+            logging.info("off button pressed")
+            increment+=1
+            logging.info("The value is " + str(increment))
         sleep(.1)
 except KeyboardInterrupt as e:
     GPIO.cleanup()
